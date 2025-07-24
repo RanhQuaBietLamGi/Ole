@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ole Jorgen's CV - Automation Engineer</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light gray background for the whole page */
+        }
+        /* Hero Section Styling with Background Image */
+        .header-hero {
+            background-image: url('https://placehold.co/1920x450/2C3E50/E0F2F7?text=Background+Image'); /* Placeholder for anh1.jpg */
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            color: #ffffff;
+            padding: 5rem 1rem; /* More generous padding */
+            border-bottom-left-radius: 3rem; /* Even more rounded corners */
+            border-bottom-right-radius: 3rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInDown 1s ease-out; /* Simple fade-in animation */
+        }
+        /* Overlay for better text readability on the background image */
+        .header-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)); /* Gradient overlay */
+            z-index: 1;
+        }
+        /* Ensure content is above the overlay */
+        .header-hero > * {
+            position: relative;
+            z-index: 2;
+        }
+        /* Main CV Content Card Styling */
+        .card {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px); /* Even stronger blur */
+            border-radius: 2rem; /* Very large rounded corners */
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.35), 0 15px 15px -8px rgba(0, 0, 0, 0.08); /* More pronounced shadow */
+            margin-top: -6rem; /* Overlap with the hero section */
+            position: relative;
+            z-index: 3;
+            animation: fadeInUp 1.2s ease-out 0.3s forwards; /* Fade-in up animation with delay */
+            opacity: 0; /* Start hidden for animation */
+        }
+        /* Profile Image Styling */
+        .profile-img {
+            border: 10px solid #ffffff; /* Thicker white border */
+            box-shadow: 0 20px 30px -8px rgba(0, 0, 0, 0.3), 0 8px 15px -5px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease; /* Smooth hover transition */
+        }
+        .profile-img:hover {
+            transform: scale(1.15) rotate(3deg); /* More dynamic hover effect */
+            border-color: #3498db; /* Change border color on hover */
+        }
+        /* Section Title Styling */
+        .section-title {
+            position: relative;
+            padding-bottom: 0.8rem;
+            margin-bottom: 2.2rem;
+            font-weight: 800; /* Extra bold */
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 0.08em; /* Wider letter spacing */
+        }
+        /* Underline for Section Titles */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80px; /* Longer line */
+            height: 6px; /* Thicker line */
+            background: linear-gradient(to right, #3498db, #2ecc71); /* Vibrant gradient */
+            border-radius: 3px;
+            animation: expandLine 1.5s ease-out forwards; /* Animation for the line */
+        }
+        /* Center section title line on small screens */
+        @media (max-width: 640px) {
+            .section-title {
+                text-align: center;
+            }
+            .section-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        /* Styling for skill list items */
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+            color: #4a5568;
+        }
+        .skill-item svg {
+            margin-right: 0.8rem;
+            color: #3498db;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+        /* Styling for contact links with icons */
+        .icon-link {
+            display: inline-flex;
+            align-items: center;
+            color: #3498db;
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-weight: 600;
+        }
+        .icon-link:hover {
+            color: #2ecc71;
+            transform: translateX(5px); /* Slight slide on hover */
+        }
+        .icon-link svg {
+            margin-right: 0.6rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes expandLine {
+            from { width: 0; }
+            to { width: 80px; }
+        }
+        .experience-entry {
+            border-left: 4px solid #3498db; /* Blue line on the left */
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .experience-entry::before {
+            content: '';
+            position: absolute;
+            left: -8px; /* Position the dot on the line */
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background-color: #2ecc71; /* Green dot */
+            border-radius: 50%;
+            border: 3px solid #ffffff; /* White border for the dot */
+            box-shadow: 0 0 0 2px #3498db; /* Outer blue ring */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center pb-10">
+    <!-- Header Hero Section with Background Image -->
+    <div class="header-hero w-full">
+        <img src="https://placehold.co/200x200/FFFFFF/3498db?text=Ole+Jorgen" alt="Ole Jorgen Profile" class="profile-img w-48 h-48 sm:w-56 sm:h-56 rounded-full object-cover mb-8">
+        <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight mb-3 text-shadow-lg drop-shadow-xl">Ole Jorgen</h1>
+        <p class="text-2xl sm:text-4xl font-semibold mb-6 text-blue-200 text-shadow-md">Automation Engineer - Marine Systems Design Specialist</p>
+        <p class="text-lg sm:text-xl text-gray-100 max-w-3xl px-4">
+            A highly skilled and innovative Automation Engineer with extensive experience in the design, development, and implementation of cutting-edge control systems for the maritime industry. Passionate about creating robust, efficient, and user-centric solutions.
+        </p>
+    </div>
+
+    <!-- Main CV Content Card -->
+    <div class="card w-full max-w-5xl p-8 sm:p-10 lg:p-12">
+        <!-- Summary Section -->
+        <section class="mb-10">
+            <h2 class="section-title text-3xl sm:text-4xl">Summary</h2>
+            <p class="text-gray-700 leading-relaxed text-lg sm:text-xl">
+                Ole Jorgen is a seasoned Automation Engineer specializing in marine control systems. His expertise encompasses the full lifecycle of system design, from conceptualization to commissioning, with a proven track record in SeaQ Control, Integrated Automation Systems (IAS), and Power Management Systems (PMS). He possesses strong hands-on experience with industry-leading technologies such as Sixnet, Citect SCADA, Wago PLC/I/O Systems, and Moxa Industrial Ethernet Solutions. Ole is also adept at crafting modern, intuitive, and highly functional Human-Machine Interfaces (HMIs) that enhance operational efficiency and user experience. Driven by a commitment to innovation and excellence, he consistently delivers high-quality, reliable, and future-proof automation solutions.
+            </p>
+        </section>
+
+        <!-- Professional Skills Section -->
+        <section class="mb-10">
+            <h2 class="section-title text-3xl sm:text-4xl">Professional Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-5 bg-blue-50 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-bold text-xl text-blue-700 mb-3 flex items-center">
+                        <svg class="w-7 h-7 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM10 7v4l3 3m0 0l-3 3m3-3h-4"></path></svg>
+                        Marine Systems
+                    </h3>
+                    <ul class="list-none text-gray-700 space-y-2">
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Marine Automation System Design</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>SeaQ Control Systems</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Integrated Automation Systems (IAS)</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Power Management Systems (PMS)</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Alarm & Monitoring Systems (AMS)</li>
+                    </ul>
+                </div>
+                <div class="p-5 bg-green-50 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-bold text-xl text-green-700 mb-3 flex items-center">
+                        <svg class="w-7 h-7 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                        Technologies & Platforms
+                    </h3>
+                    <ul class="list-none text-gray-700 space-y-2">
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Sixnet (Red Lion)</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Citect SCADA</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Wago PLC/I/O Systems</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Moxa Industrial Ethernet</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>PLC Programming (IEC 61131-3)</li>
+                    </ul>
+                </div>
+                <div class="p-5 bg-purple-50 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-bold text-xl text-purple-700 mb-3 flex items-center">
+                        <svg class="w-7 h-7 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        Software & Design
+                    </h3>
+                    <ul class="list-none text-gray-700 space-y-2">
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>HMI/SCADA Development</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>UI/UX Principles</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>System Integration</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Troubleshooting & Debugging</li>
+                        <li class="skill-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Technical Documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section class="mb-10">
+            <h2 class="section-title text-3xl sm:text-4xl">Work Experience</h2>
+            <div class="experience-entry">
+                <h3 class="text-2xl font-semibold text-gray-800">Senior Automation Engineer</h3>
+                <p class="text-blue-600 text-lg mb-2">SeaQ Control Solutions | Oslo, Norway | Jan 2018 – Present</p>
+                <ul class="list-disc list-inside text-gray-700 mt-2 space-y-2">
+                    <li>Led the design and implementation of advanced SeaQ Control systems for a fleet of offshore support vessels, improving operational efficiency by 15%.</li>
+                    <li>Managed full project lifecycles for Integrated Automation Systems (IAS) and Power Management Systems (PMS), ensuring on-time and within-budget delivery for 5+ major projects.</li>
+                    <li>Developed and optimized HMI interfaces using Citect SCADA, enhancing user experience and reducing operator error rates by 20%.</li>
+                    <li>Provided expert technical support and troubleshooting for complex automation issues, maintaining system uptime and reliability.</li>
+                    <li>Collaborated with cross-functional teams, including electrical engineers and naval architects, to ensure seamless system integration.</li>
+                </ul>
+            </div>
+            <div class="experience-entry">
+                <h3 class="text-2xl font-semibold text-gray-800">Automation Specialist</h3>
+                <p class="text-blue-600 text-lg mb-2">Marine Tech Innovations | Bergen, Norway | Mar 2014 – Dec 2017</p>
+                <ul class="list-disc list-inside text-gray-700 mt-2 space-y-2">
+                    <li>Designed and configured PLC-based control systems using Wago and Sixnet platforms for various marine applications.</li>
+                    <li>Participated in factory acceptance tests (FAT) and sea acceptance tests (SAT) for new build vessels, ensuring system compliance and performance.</li>
+                    <li>Implemented industrial communication networks using Moxa solutions for reliable data exchange between ship systems.</li>
+                    <li>Contributed to the development of technical documentation, including system specifications, functional descriptions, and test procedures.</li>
+                </ul>
+            </div>
+            <!-- Add more experience entries here -->
+        </section>
+
+        <!-- Education Section -->
+        <section class="mb-10">
+            <h2 class="section-title text-3xl sm:text-4xl">Education</h2>
+            <div class="mb-6 p-4 bg-gray-50 rounded-lg shadow-sm">
+                <h3 class="text-xl font-semibold text-gray-800">M.Sc. in Automation and Control Engineering</h3>
+                <p class="text-blue-600 text-lg">Norwegian University of Science and Technology (NTNU) | Trondheim, Norway | 2012</p>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+                <h3 class="text-xl font-semibold text-gray-800">B.Sc. in Electrical Engineering</h3>
+                <p class="text-blue-600 text-lg">University of Stavanger | Stavanger, Norway | 2010</p>
+            </div>
+        </section>
+
+        <!-- Certifications & Training Section -->
+        <section class="mb-10">
+            <h2 class="section-title text-3xl sm:text-4xl">Certifications & Training</h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                <li>Certified Citect SCADA Professional</li>
+                <li>Advanced PLC Programming (Siemens S7, Rockwell Automation)</li>
+                <li>Maritime Cyber Security Fundamentals</li>
+                <li>Project Management Professional (PMP) - In Progress</li>
+            </ul>
+        </section>
+
+        <!-- Key Projects Section (Example) -->
+        <section class="mb-10">
+            <h2 class="section-title text-3xl sm:text-4xl">Key Projects</h2>
+            <div class="mb-6 p-4 bg-blue-50 rounded-lg shadow-sm">
+                <h3 class="text-xl font-semibold text-blue-700">Integrated Control System for Arctic Research Vessel</h3>
+                <p class="text-gray-700 text-lg mb-2">Developed a robust and resilient IAS for a new polar research vessel, ensuring operation in extreme conditions.</p>
+                <ul class="list-disc list-inside text-gray-700 text-base space-y-1">
+                    <li>Designed redundant PLC architecture with Wago I/O systems for critical machinery control.</li>
+                    <li>Implemented advanced diagnostic and alarm management features, reducing maintenance time by 25%.</li>
+                    <li>Successfully integrated with dynamic positioning (DP) and navigation systems.</li>
+                </ul>
+            </div>
+            <div class="p-4 bg-green-50 rounded-lg shadow-sm">
+                <h3 class="text-xl font-semibold text-green-700">Energy Optimization for Container Ship Fleet</h3>
+                <p class="text-gray-700 text-lg mb-2">Engineered a PMS upgrade for a fleet of 10 container ships, leading to significant fuel savings.</p>
+                <ul class="list-disc list-inside text-gray-700 text-base space-y-1">
+                    <li>Implemented intelligent load shedding and generator synchronization using Sixnet RTUs.</li>
+                    <li>Developed custom HMI dashboards in Citect SCADA for real-time energy consumption monitoring.</li>
+                    <li>Achieved an average of 8% reduction in fuel consumption across the fleet.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Languages Section -->
+        <section class="mb-10">
+            <h2 class="section-title text-3xl sm:text-4xl">Languages</h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                <li>Norwegian: Native</li>
+                <li>English: Fluent</li>
+                <li>German: Intermediate</li>
+            </ul>
+        </section>
+
+        <!-- Interests Section -->
+        <section class="mb-10">
+            <h2 class="section-title text-3xl sm:text-4xl">Interests</h2>
+            <p class="text-gray-700 text-lg leading-relaxed">
+                Outside of work, Ole enjoys hiking in the Norwegian fjords, sailing, and exploring new technologies in home automation. He is also an avid reader of scientific journals and historical non-fiction.
+            </p>
+        </section>
+
+        <!-- Contact Section -->
+        <section>
+            <h2 class="section-title text-3xl sm:text-4xl">Contact</h2>
+            <div class="text-gray-700 text-lg space-y-4">
+                <p>
+                    <a href="mailto:ole.jorgen@example.com" class="icon-link">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 4v7a2 2 0 002 2h14a2 2 0 002-2v-7m-18 0V5a2 2 0 012-2h14a2 2 0 012 2v7"></path></svg>
+                        ole.jorgen@example.com
+                    </a>
+                </p>
+                <p>
+                    <a href="tel:+84123456789" class="icon-link">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        +84 123 456 789
+                    </a>
+                </p>
+                <p>
+                    <a href="https://www.linkedin.com/in/olejorgen" target="_blank" class="icon-link">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                        linkedin.com/in/olejorgen
+                    </a>
+                </p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -21,6 +21,7 @@
             background-attachment: scroll;
             color: #ffffff;
             padding: 5rem 1rem; /* More generous padding */
+            min-height: 85vh; /* Ensure sufficient height for background image */
             border-bottom-left-radius: 3rem; /* Even more rounded corners */
             border-bottom-right-radius: 3rem;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Stronger shadow */
@@ -31,7 +32,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            animation: fadeInDown 1s ease-out; /* Simple fade-in animation */
+            animation: fadeInDown 1.2s ease-out; /* Simple fade-in animation */
         }
         /* Overlay for better text readability on the background image */
         .header-hero::before {
@@ -41,7 +42,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)); /* Gradient overlay */
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)); /* Adjusted overlay transparency */
             z-index: 1;
         }
         /* Ensure content is above the overlay */
@@ -55,7 +56,7 @@
             backdrop-filter: blur(10px); /* Even stronger blur */
             border-radius: 2rem; /* Very large rounded corners */
             box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.35), 0 15px 15px -8px rgba(0, 0, 0, 0.08); /* More pronounced shadow */
-            margin-top: -6rem; /* Overlap with the hero section */
+            margin-top: 4rem; /* Adjusted to prevent overlap with text */
             position: relative;
             z-index: 3;
             animation: fadeInUp 1.2s ease-out 0.3s forwards; /* Fade-in up animation with delay */
@@ -232,11 +233,11 @@
             </div>
         </section>
 
-        <!-- Work Experience Section -->
+        <!-- Work Experience Section (Example - you can expand this) -->
         <section class="mb-10">
             <h2 class="section-title text-3xl sm:text-4xl">Work Experience</h2>
             <div class="experience-entry">
-                <h3 class="text-2xl font-semibold text-gray-800">Senior Automation Engineer/ Chán không muốn nói</h3>
+                <h3 class="text-2xl font-semibold text-gray-800">Senior Automation Engineer</h3>
                 <p class="text-blue-600 text-lg mb-2">SeaQ Control Solutions | Oslo, Norway | Jan 2018 – Present</p>
                 <ul class="list-disc list-inside text-gray-700 mt-2 space-y-2">
                     <li>Led the design and implementation of advanced SeaQ Control systems for a fleet of offshore support vessels, improving operational efficiency by 15%.</li>
@@ -256,7 +257,7 @@
                     <li>Contributed to the development of technical documentation, including system specifications, functional descriptions, and test procedures.</li>
                 </ul>
             </div>
-            <!-- Add more experience entries here -->
+            <!-- Add more experience entries here if needed -->
         </section>
 
         <!-- Education Section -->
@@ -313,7 +314,6 @@
                 <li>Norwegian: Native</li>
                 <li>English: Fluent</li>
                 <li>German: Intermediate</li>
-                 <li>Việt Nam: Nói như gió tiếng có tiếng không</li>
             </ul>
         </section>
 
